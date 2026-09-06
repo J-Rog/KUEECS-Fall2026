@@ -1,0 +1,143 @@
+<html>
+
+<head>
+  <base>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Lab 2 Signals </title>
+
+  <style>
+    BODY,
+    P,
+    BR,
+    TABLE,
+    TR,
+    TD {
+      font-size: 10pt;
+      font-family: Verdana, Arial, ;
+    }
+
+    table,
+    td,
+    th {
+      font-size: 1em;
+      border: 1px solid #000;
+      border-collapse: collapse;
+      margin: 0;
+      padding: 0;
+    }
+
+    td,
+    th {
+      padding: .2em .5em;
+      vertical-align: top;
+      font-weight: normal;
+    }
+    thead th {
+      text-transform: uppercase;
+      background: #666;
+      color: #fff;
+    }
+
+    .container-md {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .row {
+
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    .rainbow-text {
+      background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+</head>
+
+
+<body>
+  <div class="container-md">
+    <center>
+      <h1> Lab 2: Signals</h1>
+    </center>
+    <hr>
+  </div>
+
+  <div class="container-md">
+
+    <div class="row">
+
+
+      <div class="col-md-9 ">
+
+
+
+        <div class="row lab_row">
+          <div class="col">
+            <button class="btn btn-primary w-100 text-start" type="button" data-bs-toggle="collapse"
+              data-bs-target="#labCollapse" aria-expanded="false" aria-controls="labCollapse">
+              <font size="+2">Lab Materials</font>
+            </button>
+                <ul class="collapse show" id="labCollapse" start="0">
+                  <font size="+1">
+                  <li>
+                  <a href="Lab2.tar.gz" download>Lab2 Files</a>
+                  </li>
+                  <li>
+                  <a href="POSIXSignals.pdf" download>Lab2 Slides</a>
+                  </li>
+                  </font>
+              </ul>
+              </font> <br>
+          </div>
+        </div>
+
+
+
+        <div class="row lab_row">
+          <div class="col">
+            <button class="btn btn-primary w-100 text-start" type="button" data-bs-toggle="collapse"
+              data-bs-target="#projectCollapse" aria-expanded="false" aria-controls="projectCollapse">
+             <font size="+2">Assignment </font> 
+            </button>
+			   
+
+            <ol class="collapse show" id="labCollapse" start="0">
+	            <font size="+1">
+              Lab 2 requires you to complete the signals.c file so that when the user types ctrl-c the program doesn't terminate but rather increments the ctrl-c counter.When the counter hits 5 the user should be given an option to end the program. When the user types ctrl-z the program should display how many times ctrl-c has been typed. The program should also terminate in the option to end the program if the user doesn't respond in 5 seconds. To do this write a signal handler for the SIGALRM signal. 
+              </font><br> 
+          </div>
+          </font>
+
+        <div class="row lab_row">
+          <div class="col">
+            <button class="btn btn-primary w-100 text-start" type="button" data-bs-toggle="collapse"
+              data-bs-target="#projectCollapse" aria-expanded="false" aria-controls="projectCollapse">
+             <font size="+2">Rubric </font> 
+            </button>
+
+            <ul>
+	            <li>75% (signals.c) - Correct output from signals.c </li>
+	            <li>10% (Quiz) - A short quiz on Lab 2 will be open on following week during the lab hours  </li>
+	            <li>15% (Demo) - A quick demo of your submission will be taken on the following week during the lab hours (Questions will be asked) </li>
+            </ul>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+</body>
+
+</html>
