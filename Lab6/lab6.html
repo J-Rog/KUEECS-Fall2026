@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Labs 6: Intro to PThreads</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <style>
+    body, p, br, table, tr, td { font: 10pt Verdana, Arial, sans-serif; }
+    table, td, th { font-size: 1em; border: 1px solid #000; border-collapse: collapse; margin: 0; padding: 0; }
+    td, th { padding: .2em .5em; vertical-align: top; font-weight: normal; }
+    thead th { text-transform: uppercase; background: #666; color: #fff; }
+    .container-md { padding-top: 10px; padding-bottom: 10px; }
+    .lab-row { padding-top: 10px; padding-bottom: 10px; }
+    .lab-intro { font-size: 11pt; }
+    pre { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: .25rem; padding: 1rem; white-space: pre-wrap; }
+    iframe { max-width: 100%; border: 0; }
+  </style>
+</head>
+<body>
+  <main class="container-md">
+    <hr>
+
+    <section aria-labelledby="lab5-heading">
+      <h2 id="lab6-heading" class="h3 mt-4">Lab 6: Introduction to PThreads</h2>
+      <p class="lab-intro">This lab introduces basic synchronization concepts through the use of PThreads. We discuss basic usage of PThreads (creating, destroying, waiting on)  and illistrate a simple race condition. Then, we consider an instance of the dining philosopher's problem implemented using PThreads. We propose and implement two solutions to this problem using the synchronization mechnanisms.</p>
+
+      <p class="lab-intro">Topics discussed in this lab include</p>
+      <ul class="lab-intro"><li>Practice reading code using Pthreads</li><li>Practice using Pthread mutexes</li><li>Practice using Pthread condition variables</li><li>Practice analyzing concurrency control problems</li></ul>
+      <div class="row lab-row"><div class="col">
+        <button class="btn btn-primary w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#lab6Materials" aria-expanded="true" aria-controls="lab6Materials"><span class="fs-4">Lab Materials</span></button>
+        <ol class="collapse show mt-2" id="lab6Materials">
+          <li><a href="lab6.pdf" target="_blank">Slides</a></li>
+          <li><a href="lab6.tar.gz" target="_blank">Lab Files</a></li>
+        </ol>
+      </div></div>
+
+      <div class="row lab-row"><div class="col">
+        <button class="btn btn-primary w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#lab5Assignment" aria-expanded="true" aria-controls="lab5Assignment"><span class="fs-4">Assignment</span></button>
+        <div class="collapse show mt-2" id="lab5Assignment">
+          <p>You need to complete the implementation of <code>ptcount_atomic.c</code> and <code>ptcount_mutex.c</code>. When you are finished, the main process of both <code>ptcount</code> programs should create three pthreads and wait for these pthreads to complete execution. Each thread should increment (in a loop) a shared variable named <code>count</code> as well as a local counter. When the child threads are finished executing, the main thread should print out the value of <code>count</code>. The value reported by the main process should be consistent with what you would expect with the given loop bound and increment values. Your program should match the following output:</p>
+          <pre><code>bash$make pt_test
+gcc -pedantic -Wall -std=gnu11 -g -o ptcount_mutex ptcount_mutex.c -lpthread
+time ./ptcount_mutex 100000000 1
+Thread: 1 finished. Counted: 100000000
+Thread: 0 finished. Counted: 100000000
+Thread: 2 finished. Counted: 100000000
+Main(): Waited on 3 threads. Final value of count = 300000000 . Done.
+27.94user 28.98system 0:21.13elapsed 269%CPU (0avgtext+0avgdata 1912maxresident)k
+48inputs+0outputs (1major+89minor)pagefaults 0swaps
+time ./ptcount_atomic 100000000 1
+Thread: 2 finished. Counted: 100000000
+Thread: 0 finished. Counted: 100000000
+Thread: 1 finished. Counted: 100000000
+Main(): Waited on 3 threads. Final value of count = 300000000  . Done.
+18.48user 0.01system 0:06.19elapsed 298%CPU (0avgtext+0avgdata 1984maxresident)k
+40inputs+0outputs (1major+91minor)pagefaults 0swaps</code></pre>
+
+
+<p>You need to complete the implementation of <code>dp_asymmetic.c</code> and <code>dp_waiters.c</code>. When you are finished, the <code>dining philosopher</code> programs should create <code>NUM_PHILS</code> pthreads and wait for these pthreads to eat and think for <code>ITERATION_LIMIT</code> cycles. Your program should match the following output:</p>
+<pre><code>bash$make dp_test
+gcc -g dining_philosophers.c -lpthread -lm -o dp
+./dp
+Dining Philosophers Update every 5 seconds
+-------------------------------------------
+p0=   746453/746471   p1=   749506/749514   p2=   745039/745041   p3=   738140/738143   p4=   748567/748567
+...
+p0=  826793/7689673   p1=  835554/7814566   p2=  823930/7595972   p3=  824260/7672271   p4=  799882/7611900
+
+Finished without Deadlock
+</code></pre>
+
+Remember every run will be different so these numbers won't be the same for your output. The important thing to look for is the <code>Finished without Deadlock</code>
+</br></br>
+          <p>You also need to archive your lab for submission. For this step, you should use the <code>zip</code> target included in the lab's Makefile. Change the <code>STUDENT_ID</code> variable in the Makefile to your student ID and type:</p>
+          <pre><code>make zip</code></pre>
+          <p>Please ensure that you have tested your final version of the source code files on the cycle servers, before submission.</p>
+        </div>
+      </div></div>
+
+      <div class="row lab-row"><div class="col">
+        <button class="btn btn-primary w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#lab5Evaluation" aria-expanded="true" aria-controls="lab5Evaluation"><span class="fs-4">Evaluation</span></button>
+        <ul class="collapse show mt-2" id="lab6Evaluation">
+          <li>mutex solution - 10%</li><li>atomic solution - 15%</li><li>dp_asymmetric - 25%</li><li>dp_waiter - 25%</li> <li>Demo - 15%</li><li>Canvas Quiz - 10%</li>
+        </ul>
+      </div></div>
+    </section>
+
+    <hr class="my-4">
+
+
+    <p class="mt-3"><a href="../index.html">&lt; Back to the Lab Home Page</a></p>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
